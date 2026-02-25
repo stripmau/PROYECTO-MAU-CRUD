@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Lista de Tenis{% endblock %}
+{% block content %}
+
+<div class="block">
+  <a href="{{ url_for('create_tenis') }}" class="button is-success">
+    Agregar Tenis
+  </a>
+</div>
+
+<table class="table is-bordered is-fullwidth">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Marca</th>
+      <th>Modelo</th>
+      <th>Talla</th>
+      <th>Color</th>
+      <th>Precio</th>
+      <th>Stock</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for t in tenis %}
+    <tr>
+      <td>{{ t.id }}</td>
+      <td>{{ t.marca }}</td>
+      <td>{{ t.modelo }}</td>
+      <td>{{ t.talla }}</td>
+      <td>{{ t.color }}</td>
+      <td>{{ t.precio }}</td>
+      <td>{{ t.stock }}</td>
+      <td>
+        <a href="{{ url_for('update_tenis', id=t.id) }}" class="button is-warning is-small">Editar</a>
+        <a href="{{ url_for('delete_tenis', id=t.id) }}" class="button is-danger is-small">Eliminar</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
